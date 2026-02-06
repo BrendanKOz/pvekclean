@@ -431,6 +431,7 @@ pve_kernel_clean() {
 			printf "${bold}${green}DONE!${reset}\n"
 			# Get information about the /boot folder
 			boot_info=($(echo $(df -Ph | grep /boot | tail -1) | sed 's/%//g'))
+			[ ${#boot_info[*]} -gt 0 ] || boot_info=($(echo $(df -Ph / | tail -1) | sed 's/%//g'))
 			# Show information about the /boot
 			printf "${bold}[-]${reset} ${bold}Boot Disk:${reset} ${boot_info[4]}%% full [${boot_info[2]}/${boot_info[1]} used, ${boot_info[3]} free] \n"
 			# Script finished successfully
